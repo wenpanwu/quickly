@@ -9,6 +9,6 @@ describe("Home page is displayed properly", ()=>{
         render(
             <Home/>
         );
-        expect(screen.getByText(/Hello from Quickly/i)).toBeTruthy();
+        expect(screen.getByText(/Welcome to Quickly/i)).toBeTruthy();
         });
 });

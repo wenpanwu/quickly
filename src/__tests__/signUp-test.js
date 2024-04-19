@@ -6,6 +6,6 @@ describe("SignUp page is displayed properly", ()=>{
         render(
             <SignUp/>
         );
-        expect(screen.getByLabelText(/Email/i)).toBeTruthy();
+        expect(screen.getByLabelText(/^Email:$/i)).toBeTruthy();
         });
 });

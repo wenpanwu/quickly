@@ -36,21 +36,28 @@ function Login() {
         setSubmitted(true);
     }
     return (
-        <div>
-            <h1>Login</h1>
-            {/* for error message*/}
-            <div style={{color: 'red', display: emailIsValid ? 'none' : ''}}>Email is not valid</div>
-            <div>Not Sign Up Yet? Go <a href="/sign-up">Sign Up</a></div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email</label>
-                <input name="email" id="email" type="email" onChange={handleEmail} value={email}/>
-                <br/>
-                <label>Password</label>
-                <input type="password" onChange={handlePassword} value={password}/>
-                <br/>
+        <div className="container" style={{marginTop: '10px'}}>
+            <div className="border rounded-5 row align-items-center">
+                <h1 style={{textAlign: 'center'}}>Login</h1>
+                <section className="w-100 p-4 d-flex justify-content-center pb-4">
+                    {/* for error message*/}
+                    <div style={{color: 'red', display: emailIsValid ? 'none' : ''}}>Email is not valid</div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-outline mb-4">
+                            <label htmlFor="email">Email:</label>
+                            <input name="email" id="email" type="email" onChange={handleEmail} value={email} className="form-control"/>
+                        </div>
+                        <div data-mdb-input-init className="form-outline mb-4">
+                            <label htmlFor="password">Password</label>
+                            <input type="password" id="password" className="form-control" onChange={handlePassword} value={password}/>
+                        </div>
 
-                <button type="submit" onClick={handleSubmit}>Submit</button>
-            </form>
+                        <button type="submit" className="btn btn-primary btn-block mb-4" onClick={handleSubmit}>SIGN IN</button>
+                    </form>
+                </section>
+                <div style={{textAlign: 'center'}}>Not Sign Up Yet? Go <a href="/sign-up">Sign Up</a></div>
+            </div>
         </div>
-    );}
+    );
+}
 export default Login;

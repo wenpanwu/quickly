@@ -18,18 +18,20 @@ function MyProfile() {
         });
     }, []);
     return (
-        <div>
-            <h1>Hello {profileInfo.full_name}</h1>
-            <h3>Company:</h3>
-            <div>
-                <dl>
-                    <dt>Name:</dt>
-                    <dd>{profileInfo.Company && profileInfo.Company.name}</dd>
-                    <dt>Legal Name:</dt>
-                    <dd>{profileInfo.Company && profileInfo.Company.legal_name}</dd>
-                    <dt>Phone:</dt>
-                    <dd>{profileInfo.Company && profileInfo.Company.phone}</dd>
-                </dl>
+        <div className="container" style={{marginTop: '10px'}}>
+            <div className="border rounded-5 row align-items-center">
+                <h3>{profileInfo.full_name} Profile Info:</h3>
+                <h5>Company:</h5>
+                <div>
+                    <dl>
+                        <dt>Name:</dt>
+                        <dd>{profileInfo.Company && profileInfo.Company.name}</dd>
+                        <dt>Legal Name:</dt>
+                        <dd>{profileInfo.Company && profileInfo.Company.legal_name}</dd>
+                        <dt>Phone:</dt>
+                        <dd>{profileInfo.Company && profileInfo.Company.phone}</dd>
+                    </dl>
+                </div>
             </div>
         </div>
     )

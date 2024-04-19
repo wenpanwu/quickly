@@ -6,6 +6,6 @@ describe("Login page is displayed properly", ()=>{
         render(
             <Login/>
         );
-        expect(screen.getByLabelText(/Email/i)).toBeTruthy();
+        expect(screen.getByLabelText(/^Email:$/i)).toBeTruthy();
         });
 });
