@@ -5,7 +5,6 @@ function SignUp() {
     const BASE_URL = "https://api-dev.quicklyinc.com";
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    const [submitted, setSubmitted] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -45,7 +44,7 @@ function SignUp() {
         }
         setEmailMatch(email===confirmEmail);
         setPasswordMatch(password===confirmPassword);
-        if(!emailMatch || !passwordMatch) {
+        if(email!==confirmEmail || password!==confirmPassword) {
             return;
         }
         const reqBody = {
@@ -82,31 +81,24 @@ function SignUp() {
             console.log("Sign up resp: "+res);
             setIsSignUp(true);
         });
-        setSubmitted(true);
     }
     const handleFirstName = (e) => {
         setFirstName(e.target.value);
-        setSubmitted(false);
     }
     const handleLastName = (e) => {
         setLastName(e.target.value);
-        setSubmitted(false);
     }
     const handleEmail = (e) => {
         setEmail(e.target.value);
-        setSubmitted(false);
     }
     const handlePassword = (e) => {
         setPassword(e.target.value);
-        setSubmitted(false);
     }
     const handleConfirmEmail = (e) => {
         setConfirmEmail(e.target.value);
-        setSubmitted(false);
     }
     const handleConfirmPassword = (e) => {
         setConfirmPassword(e.target.value);
-        setSubmitted(false);
     }
     const handleActivityEarlyPayIntent = (e) => {
         setActivityEarlyPayIntent(!activityEarlyPayIntent);
@@ -158,16 +150,6 @@ function SignUp() {
                 <h1 style={{textAlign: 'center'}}>SignUp</h1>
                 <section className="w-100 p-4 d-flex justify-content-center pb-4">
                     {/* for error message*/}
-                    <div style={{color: 'red', display: emailIsValid ? 'none' : ''}}>Email is not valid</div>
-                    <div style={{color: 'red', display: passwordIsValid ? 'none' : ''}}>Password is not valid</div>
-                    <div style={{color: 'red', display: emailMatch ? 'none' : ''}}>Email not match with confirm email</div>
-                    <div style={{color: 'red', display: passwordMatch ? 'none' : ''}}>Password not match with confirm password</div>
-                    <div style={{display: submitted ? '' : 'none'}}>
-                        User submitted successfully!
-                    </div>
-                    <div style={{display: isSignUp ? '' : 'none'}}>
-                        You have signed up! You can go to <a href="/login/">login</a> page to login now.
-                    </div>
                     <form>
                         <div className="form-outline mb-2">
                             <label htmlFor="firstName">First Name:</label>
@@ -252,6 +234,15 @@ function SignUp() {
 
                         <button type="submit" className="btn btn-primary btn-block mb-4" onClick={handleSubmit}>SIGN UP</button>
                     </form>
+                </section>
+                <section className="w-100 p-4 justify-content-center pb-4">
+                    <div style={{color: 'red', display: emailIsValid ? 'none' : '', textAlign: 'center'}}>Email is not valid!</div>
+                    <div style={{color: 'red', display: passwordIsValid ? 'none' : '', textAlign: 'center'}}>Password is not valid!</div>
+                    <div style={{color: 'red', display: emailMatch ? 'none' : '', textAlign: 'center'}}>Email not match with confirm email</div>
+                    <div style={{color: 'red', display: passwordMatch ? 'none' : '', textAlign: 'center'}}>Password not match with confirm password</div>
+                    <div style={{display: isSignUp ? '' : 'none'}}>
+                        You have signed up! You can go to <a href="/login/">login</a> page to login now.
+                    </div>
                 </section>
         </div>
         </div>
