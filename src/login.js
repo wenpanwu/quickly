@@ -6,15 +6,13 @@ function Login() {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [submitted, setSubmitted] = useState(false);
     const [emailIsValid, setEmailIsValid] = useState(true);
+    const [loginSuccessful, setLoginSuccessful] = useState(true);
     const handleEmail = (e) => {
         setEmail(e.target.value);
-        setSubmitted(false);
     }
     const handlePassword = (e) => {
         setPassword(e.target.value);
-        setSubmitted(false);
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,9 +29,11 @@ function Login() {
         axios.post(BASE_URL + '/auth/login', reqBody).then(res=>{
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("user", res.user);
+                setLoginSuccessful(true);
                 window.location.href = '/';
+        }).catch(error=>{
+            setLoginSuccessful(false);
         });
-        setSubmitted(true);
     }
     return (
         <div className="container" style={{marginTop: '10px'}}>
@@ -56,6 +56,10 @@ function Login() {
                     </form>
                 </section>
                 <div style={{textAlign: 'center'}}>Not Sign Up Yet? Go <a href="/sign-up">Sign Up</a></div>
+                <br/>
+                <section className="w-100 p-4 justify-content-center pb-4">
+                    <div style={{color: 'red', display: loginSuccessful ? 'none' : '', textAlign: 'center'}}>Login failed!</div>
+                </section>
             </div>
         </div>
     );
